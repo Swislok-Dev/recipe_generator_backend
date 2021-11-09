@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :get_user, only: [:destroy]
+
   def index
     users = User.all
     if users.present?
@@ -10,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def create 
-    user = User.find_or_create_by(username: params[:username])
+    user = User.find_or_create_by(user_params)
     render json: user
   end
 
@@ -27,14 +29,19 @@ class UsersController < ApplicationController
   # def update
   # end
 
-  # TODO: Write out destoy method for user
-  # def destory
-  # end
+  def destroy
+    @user.destroy
+    render json: { message: "User has been deleted" }
+  end
   
   private
 
-  # def user_params
-    # params.require(:user).permit(:username)
-  # end
+  def get_user
+    @user = User.find_by(id: params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:username)
+  end
 
 end
