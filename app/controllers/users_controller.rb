@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
   def index
-    user = User.all
-    render json: user
+    users = User.all
+    if users.present?
+      render json: users
+    else
+      render json: { message: "No users found" }
+    end
   end
 
   def create 
@@ -10,14 +14,23 @@ class UsersController < ApplicationController
     render json: user
   end
 
-  def show user = User.find_by(id: params[:id])
+  def show 
+    user = User.find_by(id: params[:id])
     if user 
       render json: user
     else
-      render json: { message: "No users found" }
+      render json: { message: "No user found" }
     end
   end
 
+  # TODO: Write out update method for user
+  # def update
+  # end
+
+  # TODO: Write out destoy method for user
+  # def destory
+  # end
+  
   private
 
   # def user_params
