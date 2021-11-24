@@ -22,3 +22,33 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+## Users
+
+### User model
+- username
+- password
+- favorite_recipe
+- reviews
+
+## Reviews
+
+### Review model
+- user_id
+- recipe_id
+- rating
+
+## Create a Recipe
+
+### Recipe model
+- recipe_name
+- ingredients 
+- ingredient_amount
+- instructions
+
+### Ingredient model
+- name
+
+### Recipe_ingredient model
+- name
+- ingredient_id
+- recipe_id
