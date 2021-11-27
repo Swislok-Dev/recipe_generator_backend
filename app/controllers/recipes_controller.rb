@@ -26,12 +26,12 @@ class RecipesController < ApplicationController
   def update
     recipe = Recipe.find(params[:id])
     recipe.update(recipe_params)
-    render json:
+    render json: recipe
   end
 
   def destroy
     @recipe.destroy
-    render json:
+    render json: recipes
   end
 
   private
@@ -41,7 +41,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title)
+    params.require(:recipe).permit(:title, :ingredients, :instructions)
   end
 
 end
