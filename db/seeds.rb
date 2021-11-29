@@ -13,4 +13,9 @@ one_recipe = Recipe.create(
   ingredients: "4 slices of bacon, 2 leaves of lettuce, 2 slices of tomato, 2 slices of toasted bread, 1 tablespoon of mayonnaise", 
   instructions: "Cook the bacon in a skillet over medium-igh heat until browned. Arrange the cooked bacon, lettuce, and tomato slices on one slice of bread. Spread one side of remaining bread slice with the mayo. Bring the two pieces together to make a sandwich.")
 
+two_recipe = Recipe.create(
+  title: "blt 2", 
+  ingredients: "4 slices of bacon, 2 leaves of lettuce, 2 slices of tomato, 2 slices of toasted bread, 1 tablespoon of mayonnaise", 
+  instructions: "Cook the bacon in a skillet over medium-igh heat until browned. Arrange the cooked bacon, lettuce, and tomato slices on one slice of bread. Spread one side of remaining bread slice with the mayo. Bring the two pieces together to make a sandwich.")
+
 puts "SEEDED"
