@@ -1,35 +1,56 @@
 class ApplicationController < ActionController::API
+  skip_before_action :verify_authenticity_token
 
-  def jwt_key
-    ENV['SESSION_SECRET']
-  end
+  helper_method :login!, :logged_in?, :current_user,
+    :authorized_user?, :logout!, :set_user
+    
 
-  def issue_token(user)
-    JWT.encode({user_id: user.id}, jwt_key, 'HS256')
-  end
+  # def jwt_key
+  #   ENV['SESSION_SECRET']
+  # end
 
-  def decoded_token
-    begin
-      JWT.decode(token, jwt_key, true, { :algorithm => 'HS256' })
-    rescue JWT::DecodeError
-      [{error: “Invalid Token”}]
-    end
-  end
+  # def issue_token(@user)
+  #   JWT.encode({user_id: @user.id}, jwt_key, 'HS256')
+  # end
 
-  def token
-    request.headers['Authorization']
-  end
+  # def decoded_token
+  #   begin
+  #     JWT.decode(token, jwt_key, true, { :algorithm => 'HS256' })
+  #   rescue JWT::DecodeError
+  #     [{error: “Invalid Token”}]
+  #   end
+  # end
 
-  def user_id
-    decoded_token.first['user_id']
-  end
+  # def token
+  #   request.headers['Authorization']
+  # end
 
-  def current_user
-    user ||= User.find_by(id: user_id)
+  # def user_id
+  #   decoded_token.first['user_id']
+  # end
+
+  def login!
+    session[:user_id] = @@user.id
   end
   
   def logged_in?
-    !!current_user
+    !!session[:user_id]
+  end
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def authorized_user?
+    @user == current_user
+  end
+
+  def logout!
+    session.clear
+  end
+
+  def set_user
+    @user = User.find_by(id: session[:user_id])
   end
 
 end

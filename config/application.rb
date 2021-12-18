@@ -19,6 +19,10 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# config.middleware.use ActionDispatch::Cookies
+# config.middleware.use ActionDispatch::Session::CookieStore
+
+
 module Phase5ProjectBackend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
