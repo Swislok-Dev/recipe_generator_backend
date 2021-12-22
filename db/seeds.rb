@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-swislok = User.create(username: "Swislok", password_digest: "123")
+swislok = User.create(username: "Swislok", password: "123")
 
 one_recipe = Recipe.create(
   title: "blt", 
