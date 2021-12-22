@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user 
       render json: @user
     else
-      render json: { message: "No @user found" }
+      render json: { message: "No user found" }
     end
   end
 
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   private
 
   def get_user
-    @@user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
   end
 
   def user_params
