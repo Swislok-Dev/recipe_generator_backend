@@ -10,13 +10,30 @@
 swislok = User.create(username: "Swislok", password: "123")
 
 one_recipe = Recipe.create(
-  title: "blt", 
+  title: "The Classic BLT", 
   ingredients: "4 slices of bacon, 2 leaves of lettuce, 2 slices of tomato, 2 slices of toasted bread, 1 tablespoon of mayonnaise", 
-  instructions: "Cook the bacon in a skillet over medium-igh heat until browned. Arrange the cooked bacon, lettuce, and tomato slices on one slice of bread. Spread one side of remaining bread slice with the mayo. Bring the two pieces together to make a sandwich.")
+  instructions: "Cook the bacon in a skillet over medium-high heat until browned. Arrange the cooked bacon, lettuce, and tomato slices on one slice of bread. Spread one side of remaining bread slice with the mayo. Bring the two pieces together to make a sandwich.",
+)
+
+one_recipe.reviews.create(
+  rating: 3,
+  content: "This looks pretty basic."
+)
+
+one_recipe.reviews.create(
+  rating: 5,
+  content: "I think this actually looks pretty good"
+)
 
 two_recipe = Recipe.create(
-  title: "blt 2", 
+  title: "The Classic BLT 2", 
   ingredients: "4 slices of bacon, 2 leaves of lettuce, 2 slices of tomato, 2 slices of toasted bread, 1 tablespoon of mayonnaise", 
-  instructions: "Cook the bacon in a skillet over medium-igh heat until browned. Arrange the cooked bacon, lettuce, and tomato slices on one slice of bread. Spread one side of remaining bread slice with the mayo. Bring the two pieces together to make a sandwich.")
+  instructions: "Cook the bacon in a skillet over medium-igh heat until browned. Arrange the cooked bacon, lettuce, and tomato slices on one slice of bread. Spread one side of remaining bread slice with the mayo. Bring the two pieces together to make a sandwich.",
+)
+
+two_recipe.reviews.create(
+  rating: 5,
+  content: "This look pretty great!"
+)
 
 puts "SEEDED"

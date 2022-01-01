@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # resources :reviews
   # get 'sessions/new'
   # get 'sessions/create'
   # get 'sessions/destroy'
@@ -6,7 +7,9 @@ Rails.application.routes.draw do
   get '/logged_in',  to: 'sessions#is_logged_in?' 
   post '/logout',    to: 'sessions#destroy'
 
-  resources :recipes
+  resources :recipes, only: [:index, :show] do
+    resources :reviews, only: [:index, :show, :create]
+  end
   
   resources :users, only: [:create, :show, :index] do
     resources :items, only: [:create, :show, :index, :destroy]
