@@ -6,18 +6,21 @@ class ReviewsController < ApplicationController
   end
   
   def show
-    review = Review.find(params[:id])
+    review = Review.find_by_id(params[:id])
     render json: review
   end
 
   def create 
-    review = Review.create(review_params)
-    render json: review
+    recipe = Recipe.find_by_id(params[:recipe_id])
+    review = recipe.reviews.create(review_params)
+    if review.save
+      render json: review
+    end
   end
 
   private
 
   def review_params
-    params.permit(:recipe_id, :rating, :content)
+    params.require(:review).permit(:id, :recipe_id, :rating, :content)
   end
 end
