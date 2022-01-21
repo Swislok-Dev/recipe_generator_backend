@@ -1,13 +1,21 @@
 class ReviewsController < ApplicationController
 
   def index
-    reviews = Review.all
-    render json: reviews
+    reviews = recipe_reviews
+    if reviews.present?
+      render json: reviews
+    else
+      render json: { message: "No reviews found"}
+    end
   end
   
   def show
-    review = Review.find_by_id(params[:id])
-    render json: review
+    @review = find_review
+    if @review
+      render json: @review
+    else
+      render json: { message: "Review not found"}, :status => 404
+    end
   end
 
   def create 
@@ -18,7 +26,38 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def update
+    review = find_review
+    if review.update(review_params)
+      render json: review
+    else
+      render json: { error: review }
+    end
+  end
+
+  def delete
+    review = find_review
+    if review.destroy
+      render json: reviews
+    else
+      render json: { message: "review was not destroyed" }
+    end
+  end
+
+
   private
+
+  def find_recipe 
+    @recipe = Recipe.find_by_id(params[:recipe_id])
+  end
+  
+  def recipe_reviews
+    @recipe = Recipe.find_by(id: params[:recipe_id]).reviews
+  end
+  
+  def find_review
+    @review = recipe_reviews.find_by(id: params[:id])
+  end
 
   def review_params
     params.require(:review).permit(:id, :recipe_id, :rating, :content)

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # get '/logged_in',  to: 'sessions#is_logged_in?' 
   # post '/logout',    to: 'sessions#destroy'
 
-  resources :recipes, only: [:index, :show, :create] do
+  resources :recipes do
     resources :reviews, only: [:index, :show, :create]
   end
 
