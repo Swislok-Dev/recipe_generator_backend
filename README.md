@@ -1,8 +1,8 @@
+# Introduction
+
 Link to the frontend source code is [here](https://github.com/Swislok-Dev/recipe_generator_frontend)
 
-# Recipe Generator Backend
-
-## Introduction
+## Recipe Generator Backend
 
 This is a backend API run on Ruby on Rails. Data is stored here for the frontend to collect and write to.
 
