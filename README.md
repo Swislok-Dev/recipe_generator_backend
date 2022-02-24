@@ -1,56 +1,34 @@
 Link to the frontend source code is [here](https://github.com/Swislok-Dev/recipe_generator_frontend)
 
-# README
+# Recipe Generator Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction
 
-Things you may want to cover:
+This is a backend API run on Ruby on Rails. Data is stored here for the frontend to collect and write to.
 
-* Ruby version
+Database keeps a collection of recipes with the recipe title, ingredients used, and the instructions for making the recipe.
 
-* System dependencies
+## Setup
 
-* Configuration
+- `bundle install` to bundle all gems
+- `rails db:create` to create databases
+- `rails db:migrate` to get all migrations
+- `rails db:seed` to input seed data
+- `rails s` to start server
 
-* Database creation
+## License
 
-* Database initialization
+[MIT](https://github.com/Swislok-Dev/Gunstore/blob/master/LICENSE.md)
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-## Users
-
-### User model
-- username
-- password
-- favorite_recipe
-- reviews
-
-## Reviews
+## Modals
 
 ### Review model
-- user_id
+
 - recipe_id
 - rating
 
-## Create a Recipe
-
 ### Recipe model
-- recipe_name
-- ingredients 
-- ingredient_amount
+
+- recipe_title
+- ingredients
 - instructions
-
-### Ingredient model
-- name
-
-### Recipe_ingredient model
-- name
-- ingredient_id
-- recipe_id
