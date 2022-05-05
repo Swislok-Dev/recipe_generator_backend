@@ -7,12 +7,14 @@ Rails.application.routes.draw do
   # get '/logged_in',  to: 'sessions#is_logged_in?' 
   # post '/logout',    to: 'sessions#destroy'
 
-  resources :recipes do
-    resources :reviews, only: [:index, :show, :create]
+  namespace :api do
+    namespace :v1 do
+      resources :recipes do
+        resources :reviews, only: [:index, :show, :create]
+      end
+    end
   end
 
-  get'/reviews',     to: 'reviews#index'
-  
-  # resources :users, only: [:create, :show, :index] 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get'/api/v1/reviews',     to: 'reviews#index'
 end
