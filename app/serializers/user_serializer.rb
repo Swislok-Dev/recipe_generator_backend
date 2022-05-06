@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest, :recipes
+  attributes :id, :username, :password_digest, :recipes, :reviews
   
   def recipes
     self.object.recipes.map do |recipe|
