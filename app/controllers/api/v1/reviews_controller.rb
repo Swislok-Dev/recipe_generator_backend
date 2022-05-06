@@ -14,7 +14,7 @@ class Api::V1::ReviewsController < ApplicationController
     if review
       render json: review
     else
-      render json: { message: "Review not found"}, :status => 404
+      render json: { message: "Review not found"}, status: 422
     end
   end
 
