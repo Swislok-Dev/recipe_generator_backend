@@ -17,7 +17,7 @@ class RecipesController < ApplicationController
   def show
     recipe = Recipe.find_by(id: params[:id])
     if recipe
-      render json: recipe, serializer: RecipeShowSerializer
+      render json: recipe
     else
       render json: { message: "No recipe found" }
     end

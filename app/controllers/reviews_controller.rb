@@ -16,21 +16,35 @@ class ReviewsController < ApplicationController
       return
     end
     reviews = recipe.reviews unless recipe.nil?
-    if reviews.present? 
+    if reviews.present?
       render json: reviews
     else
       render json: { message: "No reviews found" }
     end
   end
 
-  def show
-    @review = find_review
-    if @review
-      render json: @review
+  def show 
+    recipe = Recipe.find_by_id(params[:recipe_id])
+    if !recipe
+      render json: { message: "No recipe for this review" }
+      return
+    end
+    review = recipe.reviews.find_by_id(params[:id])
+    if review.present?
+      render json: review
     else
-      render json: { message: "Review not found"}, :status => 404
+      render json: { message: "Review not found" }
     end
   end
+
+  # def show
+  #   @review = find_review
+  #   if @review.present?
+  #     render json: @review
+  #   else
+  #     render json: { message: "Review not found"}, :status => 404
+  #   end
+  # end
 
   def create 
     recipe = Recipe.find_by_id(params[:recipe_id])
@@ -61,9 +75,9 @@ class ReviewsController < ApplicationController
 
   private
 
-  def find_recipe 
-    @recipe = Recipe.find_by_id(params[:recipe_id])
-  end
+  # def find_recipe 
+  #   @recipe = Recipe.find_by_id(params[:recipe_id])
+  # end
   
   def recipe_reviews
     @recipe = Recipe.find_by_id(params[:recipe_id]).reviews
@@ -74,6 +88,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:id, :recipe_id, :rating, :content)
+    params.require(:review).permit(:recipe_id, :rating, :content)
   end
 end
