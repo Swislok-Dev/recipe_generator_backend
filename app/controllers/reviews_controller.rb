@@ -1,14 +1,28 @@
 class ReviewsController < ApplicationController
 
-  def index
-    reviews = recipe_reviews
-    if reviews.present?
+  def reviews_index
+    reviews = Review.all
+    if reviews.present? && !reviews.nil?
       render json: reviews
     else
-      render json: { message: "No reviews found"}
+      render json: { message: "No reviews found" }
     end
   end
-  
+
+  def index 
+    recipe = Recipe.find_by_id(params[:recipe_id])
+    if !recipe
+      render json: { message: "No recipe for these reviews" }
+      return
+    end
+    reviews = recipe.reviews unless recipe.nil?
+    if reviews.present? 
+      render json: reviews
+    else
+      render json: { message: "No reviews found" }
+    end
+  end
+
   def show
     @review = find_review
     if @review
@@ -52,7 +66,7 @@ class ReviewsController < ApplicationController
   end
   
   def recipe_reviews
-    @recipe = Recipe.find_by(id: params[:recipe_id]).reviews
+    @recipe = Recipe.find_by_id(params[:recipe_id]).reviews
   end
   
   def find_review
