@@ -1,5 +1,5 @@
 class RecipeSerializer < ActiveModel::Serializer
-  attributes :id, :title, :ingredients, :instructions, :reviews
+  attributes :id, :name, :ingredients, :instructions, :reviews
   has_many :reviews
   
   # def reviews

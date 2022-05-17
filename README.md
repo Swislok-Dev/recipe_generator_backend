@@ -6,7 +6,7 @@ Link to the frontend source code is [here](https://github.com/Swislok-Dev/recipe
 
 This is a backend API run on Ruby on Rails. Data is stored here for the frontend to collect and write to.
 
-Database keeps a collection of recipes with the recipe title, ingredients used, and the instructions for making the recipe.
+Database keeps a collection of recipes with the recipe name, ingredients used, and the instructions for making the recipe.
 
 ## Setup
 
@@ -29,6 +29,6 @@ Database keeps a collection of recipes with the recipe title, ingredients used, 
 
 ### Recipe model
 
-- recipe_title
+- recipe_name
 - ingredients
 - instructions
